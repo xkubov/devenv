@@ -39,6 +39,9 @@ RUN apt-get update && \
 		tmux \
 		curl \
 		sudo \
+		ripgrep \
+		exa \
+		fzf \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
