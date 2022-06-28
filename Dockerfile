@@ -73,4 +73,8 @@ RUN fish -c "omf install bobthefish"
 
 RUN cd /home/devel/.vim/bundle/coc.nvim && yarn install
 
+RUN vim +'CocInstall -sync coc-pyright' +qal \
+	vim +'CocInstall -sync coc-json' +qal \
+	vim +'CocInstall -sync coc-tsserver' +qal
+
 entrypoint ["python3", "-m", "http.server", "80"]
