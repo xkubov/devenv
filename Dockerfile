@@ -5,7 +5,6 @@ RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -y install \
 		build-essential \
 		fish \
-		nodejs \
 		autoconf \
 		automake \
 		libtool \
@@ -38,8 +37,8 @@ RUN apt-get update && \
 		libzip-dev \
 		libxxhash-dev \
 		tmux \
+		curl \
 		sudo \
-		yarn \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
@@ -49,6 +48,11 @@ RUN apt-get update && \
 	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 \
 		--slave /usr/bin/g++ g++ /usr/bin/g++-10 \
 		--slave /usr/bin/gcov gcov /usr/bin/gcov-10
+
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install yarn nodejs
 
 
 RUN useradd -rm -p `openssl passwd -1 devel` -d /home/devel -s /bin/fish -g root -G sudo -u 1001 devel
