@@ -4,6 +4,8 @@ RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common && \
 	DEBIAN_FRONTEND=noninteractive apt-get -y install \
 		build-essential \
+		fish \
+		nodejs \
 		autoconf \
 		automake \
 		libtool \
@@ -46,7 +48,7 @@ RUN apt-get update && \
 		--slave /usr/bin/gcov gcov /usr/bin/gcov-10
 
 
-WORKDIR /dev
+WORKDIR /devel
 RUN git clone https://github.com/xkubov/.home \
 	&& cd .home \
 	&& make gitc \
