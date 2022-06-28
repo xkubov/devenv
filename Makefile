@@ -13,4 +13,4 @@ build:
 # Run devenv with specified directory as base.
 run:
 	@test ! -z $(BASE) || (echo "make run BASE=PATH" && exit 1)
-	@docker run -v $(realpath $(BASE)):/devel --net=host -it --rm --entrypoint /bin/fish -t devenv
+	@docker run -v $(realpath $(BASE)):/home/devel/devel:rw --net=host -it --entrypoint /bin/fish -t devenv

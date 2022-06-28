@@ -43,6 +43,7 @@ RUN apt-get update && \
 		ripgrep \
 		exa \
 		fzf \
+		libsasl2-dev \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
@@ -61,6 +62,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install yarn nod
 
 RUN useradd -rm -p `openssl passwd -1 devel` -d /home/devel -s /bin/fish -g root -G sudo -u 1001 devel
 
+
+WORKDIR /devel
+RUN chown -R devel /devel
+
 USER devel
 WORKDIR /home/devel
 
@@ -78,5 +83,10 @@ RUN cd /home/devel/.vim/bundle/coc.nvim && yarn install
 RUN vim +'CocInstall -sync coc-pyright' +qal && \
 	vim +'CocInstall -sync coc-json' +qal && \
 	vim +'CocInstall -sync coc-tsserver' +qal
+
+# Use the pre-selected pyenv directory.
+ENV PYENV_ROOT="/home/devel/.pyenv"
+
+ENV PATH="/home/devel/.pyenv/bin:$PATH"
 
 entrypoint ["python3", "-m", "http.server", "80"]
