@@ -4,6 +4,7 @@ RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common && \
 	DEBIAN_FRONTEND=noninteractive apt-get -y install \
 		build-essential \
+		libpq-dev \
 		wget \
 		fish \
 		libsqlite3-dev \
