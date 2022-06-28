@@ -44,6 +44,7 @@ RUN apt-get update && \
 		exa \
 		fzf \
 		libsasl2-dev \
+		libffi-dev \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
