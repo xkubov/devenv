@@ -37,6 +37,9 @@ RUN apt-get update && \
 		libbz2-dev \
 		libzip-dev \
 		libxxhash-dev \
+		tmux \
+		sudo \
+		yarn \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
@@ -48,11 +51,12 @@ RUN apt-get update && \
 		--slave /usr/bin/gcov gcov /usr/bin/gcov-10
 
 
-WORKDIR /devel
+RUN useradd -rm -p `openssl passwd -1 devel` -d /home/devel -s /bin/fish -g root -G sudo -u 1001 devel
+
+USER devel
+WORKDIR /home/devel
+
 RUN git clone https://github.com/xkubov/.home \
 	&& cd .home \
 	&& make gitc \
 	&& make vimc
-
-
-ENTRYPOINT /bin/bash
