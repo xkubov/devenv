@@ -93,4 +93,4 @@ ENV PYENV_ROOT="/home/devel/.pyenv"
 
 ENV PATH="/home/devel/.pyenv/bin:$PATH"
 
-entrypoint ["python3", "-m", "http.server", "80"]
+entrypoint ["python3", "-m", "http.server", "8080"]
