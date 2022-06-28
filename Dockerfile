@@ -75,6 +75,7 @@ WORKDIR /home/devel
 RUN git clone https://github.com/xkubov/.home \
 	&& cd .home \
 	&& make gitc \
+	&& make tmuxc \
 	&& make vimc
 
 RUN curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o /tmp/install.fish && fish /tmp/install.fish --noninteractive
