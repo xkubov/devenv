@@ -6,6 +6,7 @@ RUN apt-get update && \
 		build-essential \
 		wget \
 		fish \
+		python-is-python3 \
 		autoconf \
 		automake \
 		libtool \
