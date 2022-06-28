@@ -72,3 +72,5 @@ RUN curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/inst
 RUN fish -c "omf install bobthefish"
 
 RUN cd /home/devel/.vim/bundle/coc.nvim && yarn install
+
+entrypoint ["python3", "-m", "http.server", "80"]
