@@ -67,3 +67,5 @@ RUN git clone https://github.com/xkubov/.home \
 
 RUN curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o /tmp/install.fish && fish /tmp/install.fish --noninteractive
 RUN fish -c "omf install bobthefish"
+
+RUN cd /home/devel/.vim/bundle/coc.nvim && yarn install
