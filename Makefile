@@ -14,3 +14,11 @@ build:
 run:
 	@test ! -z $(BASE) || (echo "make run BASE=PATH" && exit 1)
 	@docker run -v $(realpath $(BASE)):/home/devel/devel:rw --net=host -it --entrypoint /bin/fish -t devenv
+
+# Tag latest build with TAG=tag tag.
+tag:
+	@docker tag devenv xkubov/devenv:$(TAG)
+
+# Push tag TAG=tag into the docker hub.
+push:
+	@docker push xkubov/devenv:$(TAG)
