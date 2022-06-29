@@ -104,4 +104,4 @@ ENV PATH="/home/devel/.pyenv/bin:$PATH"
 ENV LC_CTYPE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-entrypoint ["python3", "-m", "http.server", "8080"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
