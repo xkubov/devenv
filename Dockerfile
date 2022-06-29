@@ -50,7 +50,7 @@ RUN apt-get update && \
 		libsasl2-dev \
 		libffi-dev \
 		tzdata \
-		gettext-base && \
+		gettext-base \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
