@@ -51,6 +51,8 @@ RUN apt-get update && \
 		libffi-dev \
 		tzdata \
 		gettext-base \
+		krb5-user \
+		krb5-config \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
@@ -88,6 +90,7 @@ RUN git clone https://github.com/xkubov/.home \
 
 RUN curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o /tmp/install.fish && fish /tmp/install.fish --noninteractive
 RUN fish -c "omf install es"
+RUN fish -c "omf install pyenv"
 
 RUN cd /home/devel/.vim/bundle/coc.nvim && yarn install
 
