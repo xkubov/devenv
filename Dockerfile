@@ -49,6 +49,8 @@ RUN apt-get update && \
 		fzf \
 		libsasl2-dev \
 		libffi-dev \
+		tzdata \
+		gettext-base && \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
@@ -64,9 +66,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install yarn nodejs
 
+RUN ln -fs /usr/share/zoneinfo/Europe/Prague /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 RUN useradd -rm -p `openssl passwd -1 devel` -d /home/devel -s /bin/fish -g root -G sudo -u 1001 devel
-
 
 WORKDIR /devel
 RUN chown -R devel /devel
@@ -94,5 +96,8 @@ RUN vim +'CocInstall -sync coc-pyright' +qal && \
 ENV PYENV_ROOT="/home/devel/.pyenv"
 
 ENV PATH="/home/devel/.pyenv/bin:$PATH"
+
+ENV LC_CTYPE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 entrypoint ["python3", "-m", "http.server", "8080"]
