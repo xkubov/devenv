@@ -68,6 +68,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install yarn nod
 
 RUN ln -fs /usr/share/zoneinfo/Europe/Prague /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
+RUN echo LANG=en_US.utf-8 >> /etc/environment
+RUN echo LC_ALL=en_US.utf-8 >> /etc/environment
+
 RUN useradd -rm -p `openssl passwd -1 devel` -d /home/devel -s /bin/fish -g root -G sudo -u 1001 devel
 
 WORKDIR /devel
