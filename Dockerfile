@@ -53,6 +53,7 @@ RUN apt-get update && \
 		gettext-base \
 		krb5-user \
 		krb5-config \
+		postgresql-client \
 		libuv1-dev && \
 	apt-get clean && \
 	apt-get auto-remove -y && \
