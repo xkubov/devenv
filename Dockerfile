@@ -85,6 +85,7 @@ WORKDIR /home/devel
 
 RUN git clone https://github.com/xkubov/.home \
 	&& cd .home \
+	&& git checkout work \
 	&& make gitc \
 	&& make tmuxc \
 	&& make vimc
